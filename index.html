@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        input, textarea, button {
+  display: block;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+textarea {
+  height: 100px;
+}
+
+button {
+  width: auto;
+}
+        </style>
+<div style="width: 450px;">
+<input type="text" id="name" placeholder="Name">
+<input type="text" id="phone" placeholder="Phone">
+<input type="text" id="email" placeholder="E-mail">
+<textarea id="message" placeholder="Your Message"></textarea>
+<button onclick="sendEmail()">Send</button>
+</div>
+<script>
+    function sendEmail() {
+
+//Define campos
+let fields = {
+  name: document.querySelector("#name").value,
+  phone: document.querySelector("#phone").value,
+  email: document.querySelector("#email").value,
+  message: document.querySelector("#message").value
+};
+
+//Monta corpo da mensagem
+let body = '<br><b>Name:</b> ' + fields.name + '<br>' +
+'<b>Phone:</b> ' + fields.phone + '<br>' +
+'<b>E-mail:</b> ' + fields.email + '<br>' +
+'<b>Message:</b> ' + fields.message + '</p>';
+
+//Função de envio do SmtpJS
+Email.send({
+  SecureToken : "3e3ceea2-2cb6-460e-bef9-8eda1298071a",
+  To : "portfoliocraft444@gmail.com",
+  From : "almeidadavid123@gmail.com",
+  Subject : "Novo contato via site",
+  Body : body
+}).then(
+  message => console.log(message)
+);
+};
+    </script>
+</body>
+</html>
